@@ -1,0 +1,47 @@
+
+<div class="search-container">
+  <div class="search-bar">
+    <i class="pi pi-search search-icon"></i>
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="searchQuery"
+      placeholder="Search"
+      (keyup.enter)="searchMovies()"
+    />
+  </div>
+</div>
+
+<div *ngIf="topMovies.length && !movies.length && !showNoResultsMessage" class="movies-container">
+  <h3>Suggested</h3>
+  <div class="suggested-row">
+    <div *ngFor="let movie of topMovies" class="movie-card">
+      <img
+        [src]="movie.Poster"
+        [alt]="movie.Title"
+        (click)="openImdbPage(movie.imdbID)"
+        class="movie-poster"
+      />
+      <p class="movie-title">{{ movie.Title }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="movies.length" class="movies-container">
+  <h3>Search Results</h3>
+  <div class="suggested-row">
+    <div *ngFor="let movie of movies" class="movie-card">
+      <img
+        [src]="movie.Poster"
+        [alt]="movie.Title"
+        (click)="openImdbPage(movie.imdbID)"
+        class="movie-poster"
+      />
+      <p class="movie-title">{{ movie.Title }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showNoResultsMessage" class="no-results">
+  <p>No movies found!</p>
+</div>
